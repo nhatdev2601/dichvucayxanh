@@ -15,10 +15,19 @@ export default function LoginPage() {
   // If user already has an active session, redirect to admin dashboard
   useEffect(() => {
     async function checkExistingSession() {
-      const user = await getCurrentUser();
-      if (user) {
-        router.replace('/admin');
-      } else {
+      try {
+        // Add 3s timeout to avoid hanging forever
+        const timeoutPromise = new Promise<null>((resolve) =>
+          setTimeout(() => resolve(null), 3000)
+        );
+        const user = await Promise.race([getCurrentUser(), timeoutPromise]);
+        if (user) {
+          router.replace('/admin');
+          return;
+        }
+      } catch {
+        // ignore errors - just show the login form
+      } finally {
         setCheckingSession(false);
       }
     }

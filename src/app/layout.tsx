@@ -26,6 +26,11 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL('https://dichvucayxanh.me'),
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/apple-touch-icon.svg',
+  },
   alternates: {
     canonical: '/',
   },

@@ -23,11 +23,11 @@ export default function Header() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="h-10 w-10 rounded-full bg-primary flex items-center justify-center">
-                <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                </svg>
-              </div>
+              <img
+                src="/logo.svg"
+                alt="Cây Xanh TP.HCM Logo"
+                className="h-10 w-10"
+              />
               <span className="text-xl font-bold text-gray-900">
                 Cây Xanh <span className="text-primary">TP.HCM</span>
               </span>
