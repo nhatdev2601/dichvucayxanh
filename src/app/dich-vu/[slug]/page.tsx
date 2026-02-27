@@ -217,7 +217,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <span className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            {idx + 2} / {service.images.length}
+                            {idx + 2} / {service.images?.length}
                           </span>
                         </div>
                       ))}
