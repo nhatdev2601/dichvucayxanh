@@ -95,26 +95,31 @@ export default async function ServicePage({ params }: ServicePageProps) {
       <JsonLdScript data={serviceJsonLd} />
 
       {/* Hero Banner */}
-      <section className="relative h-[350px] md:h-[450px] flex items-end overflow-hidden">
-        {imageUrl ? (
-          <img
-            src={imageUrl}
-            alt={imageAlt}
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : (
-          <div className={`absolute inset-0 bg-gradient-to-br ${meta.gradient}`}></div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 w-full">
+      <section className="relative flex flex-col justify-end overflow-hidden min-h-[320px] md:min-h-[450px]">
+        {/* Background image with fixed height wrapper */}
+        <div className="absolute inset-0">
+          {imageUrl ? (
+            <img
+              src={imageUrl}
+              alt={imageAlt}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className={`w-full h-full bg-gradient-to-br ${meta.gradient}`}></div>
+          )}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20"></div>
+        </div>
+
+        {/* Content — grows naturally, pushes section taller on mobile */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-8 md:pb-12 w-full">
           {/* Breadcrumb */}
-          <nav className="mb-4">
-            <ol className="flex items-center text-sm text-white/70">
+          <nav className="mb-3 hidden sm:block">
+            <ol className="flex items-center flex-wrap text-sm text-white/70">
               <li><Link href="/" className="hover:text-white transition-colors">Trang chủ</Link></li>
               <li className="mx-2">/</li>
               <li><Link href="/dich-vu" className="hover:text-white transition-colors">Dịch vụ</Link></li>
               <li className="mx-2">/</li>
-              <li className="text-white font-medium">{service.title}</li>
+              <li className="text-white font-medium line-clamp-1">{service.title}</li>
             </ol>
           </nav>
           <div className="flex items-center gap-3 mb-3">
@@ -122,10 +127,10 @@ export default async function ServicePage({ params }: ServicePageProps) {
               {meta.badge}
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black text-white mb-3 leading-tight">
             {service.title}
           </h1>
-          <p className="text-xl text-gray-200 max-w-3xl">
+          <p className="text-sm sm:text-base md:text-xl text-gray-200 max-w-3xl leading-relaxed">
             {service.shortDescription}
           </p>
         </div>
@@ -159,6 +164,17 @@ export default async function ServicePage({ params }: ServicePageProps) {
                 </div>
               )}
 
+              {/* Featured Image */}
+              {imageUrl && (
+                <div className="mb-8 rounded-2xl overflow-hidden shadow-lg ring-1 ring-gray-100">
+                  <img
+                    src={imageUrl}
+                    alt={imageAlt}
+                    className="w-full h-72 md:h-[420px] object-cover"
+                  />
+                </div>
+              )}
+
               {/* Article Content */}
               <div
                 className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-p:text-gray-700 prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-img:rounded-lg prose-strong:text-gray-900"
@@ -167,24 +183,46 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
               {/* Image Gallery */}
               {service.images && service.images.length > 0 && (
-                <div className="mt-10">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-5 flex items-center">
-                    <svg className="h-6 w-6 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
-                    Hình ảnh thực tế
-                  </h2>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                    {service.images.map((imgId, idx) => (
-                      <div key={imgId} className="aspect-square rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-                        <img
-                          src={getImageUrl(imgId)}
-                          alt={`${service.altText || service.title} - Ảnh ${idx + 1}`}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                        />
-                      </div>
-                    ))}
+                <div className="mt-12">
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="h-8 w-1 bg-primary rounded-full"></div>
+                    <h2 className="text-2xl font-bold text-gray-900">Hình ảnh thực tế</h2>
+                    <span className="ml-auto text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
+                      {service.images.length} ảnh
+                    </span>
                   </div>
+
+                  {/* Featured first image */}
+                  <div className="rounded-2xl overflow-hidden shadow-lg mb-3 group relative">
+                    <img
+                      src={getImageUrl(service.images[0])}
+                      alt={`${service.altText || service.title} - Ảnh 1`}
+                      className="w-full h-72 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <span className="absolute bottom-3 left-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
+                      1 / {service.images.length}
+                    </span>
+                  </div>
+
+                  {/* Thumbnail grid */}
+                  {service.images.length > 1 && (
+                    <div className={`grid gap-3 ${service.images.length === 2 ? 'grid-cols-1' : service.images.length === 3 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
+                      {service.images.slice(1).map((imgId, idx) => (
+                        <div key={imgId} className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 aspect-[4/3]">
+                          <img
+                            src={getImageUrl(imgId)}
+                            alt={`${service.altText || service.title} - Ảnh ${idx + 2}`}
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <span className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            {idx + 2} / {service.images.length}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               )}
             </div>
