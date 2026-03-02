@@ -170,7 +170,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   <img
                     src={imageUrl}
                     alt={imageAlt}
-                    className="w-full h-72 md:h-[420px] object-cover"
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               )}
@@ -197,7 +197,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
                     <img
                       src={getImageUrl(service.images[0])}
                       alt={`${service.altText || service.title} - Ảnh 1`}
-                      className="w-full h-72 md:h-96 object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     <span className="absolute bottom-3 left-3 bg-black/50 text-white text-xs px-2 py-1 rounded-full backdrop-blur-sm">
@@ -209,11 +209,11 @@ export default async function ServicePage({ params }: ServicePageProps) {
                   {service.images.length > 1 && (
                     <div className={`grid gap-3 ${service.images.length === 2 ? 'grid-cols-1' : service.images.length === 3 ? 'grid-cols-2' : 'grid-cols-2 sm:grid-cols-3'}`}>
                       {service.images.slice(1).map((imgId, idx) => (
-                        <div key={imgId} className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 aspect-[4/3]">
+                        <div key={imgId} className="relative group rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
                           <img
                             src={getImageUrl(imgId)}
                             alt={`${service.altText || service.title} - Ảnh ${idx + 2}`}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-auto object-contain group-hover:scale-110 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                           <span className="absolute bottom-2 left-2 bg-black/50 text-white text-xs px-2 py-0.5 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">

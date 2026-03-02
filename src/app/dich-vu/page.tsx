@@ -72,7 +72,7 @@ export default async function DichVuPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {services.map((service) => {
               const meta = getServiceMeta(service.slug);
-              const displayImageId = service.featuredImage || service.coverImage;
+              const displayImageId = service.coverImage;
               const imageUrl = displayImageId ? getImageUrl(displayImageId) : '';
               const imageAlt = service.altText || service.title;
 
