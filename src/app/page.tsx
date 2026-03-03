@@ -94,7 +94,7 @@ export default async function HomePage() {
             {services.length > 0 ? (
               services.map((service) => {
                 const meta = getServiceMeta(service.slug);
-                const displayImageId = service.featuredImage || service.coverImage;
+                const displayImageId =  service.coverImage;
                 const imageUrl = displayImageId ? getImageUrl(displayImageId) : '';
                 const imageAlt = service.altText || service.title;
 
@@ -108,7 +108,7 @@ export default async function HomePage() {
                         <img
                           src={imageUrl}
                           alt={imageAlt}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                       ) : (
                         <div className={`w-full h-full bg-gradient-to-br ${meta.gradient} flex items-center justify-center`}>
