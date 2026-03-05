@@ -47,6 +47,9 @@ export const metadata: Metadata = {
     title: "Dịch Vụ Cây Xanh TP.HCM",
     description: "Dịch vụ cưa cây, cắt tỉa cây, bứng cây, trồng cây chuyên nghiệp tại TP.HCM",
   },
+  verification: {
+    google: 'KHVJbwnJPl5iKRFur7C-rQaJDaXvdZnx_NpEMGpsPfY',
+  },
   robots: {
     index: true,
     follow: true,
