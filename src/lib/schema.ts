@@ -9,9 +9,9 @@ export function generateLocalBusinessSchema(): JsonLd {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: 'Dịch Vụ Cây Xanh TP.HCM',
-    image: 'https://dichvucayxanh.com/og-image.jpg',
-    '@id': 'https://dichvucayxanh.com',
-    url: 'https://dichvucayxanh.com',
+    image: 'https://www.dichvucayxanh.me/og-image.jpg',
+    '@id': 'https://www.dichvucayxanh.me',
+    url: 'https://www.dichvucayxanh.me',
     telephone: '+84908396962',
     priceRange: '$$',
     address: {

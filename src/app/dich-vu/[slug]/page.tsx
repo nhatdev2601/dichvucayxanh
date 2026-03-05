@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       title: service.seoTitle || service.title,
       description: service.seoDescription || service.shortDescription,
       type: 'website',
-      url: `https://dichvucayxanh.me/dich-vu/${service.slug}`,
+      url: `https://www.dichvucayxanh.me/dich-vu/${service.slug}`,
       images: imageUrl ? [{ url: imageUrl, alt: service.title }] : [],
     },
     twitter: {
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: ServicePageProps): Promise<Me
       images: imageUrl ? [imageUrl] : [],
     },
     alternates: {
-      canonical: `https://dichvucayxanh.me/dich-vu/${service.slug}`,
+      canonical: `https://www.dichvucayxanh.me/dich-vu/${service.slug}`,
     },
   };
 }
@@ -75,7 +75,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
     provider: {
       '@type': 'LocalBusiness',
       name: 'Dịch Vụ Cây Xanh TP.HCM',
-      url: 'https://dichvucayxanh.me',
+      url: 'https://www.dichvucayxanh.me',
       telephone: '+84908396962',
     },
     areaServed: {

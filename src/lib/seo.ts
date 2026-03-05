@@ -11,7 +11,7 @@ interface SEOConfig {
 
 const BUSINESS_NAME = 'Dịch Vụ Cây Xanh';
 const LOCATION = 'TP.HCM';
-const DOMAIN = 'https://dichvucayxanh.me';
+const DOMAIN = 'https://www.dichvucayxanh.me';
 
 export function generateSEOTitle(config: SEOConfig): string {
   if (config.title) return config.title;

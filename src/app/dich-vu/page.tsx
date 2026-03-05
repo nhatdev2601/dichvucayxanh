@@ -34,7 +34,7 @@ export default async function DichVuPage() {
         '@type': 'Service',
         name: service.title,
         description: service.shortDescription,
-        url: `https://dichvucayxanh.me/dich-vu/${service.slug}`,
+        url: `https://www.dichvucayxanh.me/dich-vu/${service.slug}`,
         provider: {
           '@type': 'LocalBusiness',
           name: 'Dịch Vụ Cây Xanh TP.HCM',

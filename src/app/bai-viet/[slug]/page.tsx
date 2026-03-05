@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.excerpt,
       type: 'article',
-      url: `https://dichvucayxanh.me/bai-viet/${post.slug}`,
+      url: `https://www.dichvucayxanh.me/bai-viet/${post.slug}`,
       images: imageUrl ? [{ url: imageUrl, alt: post.title }] : [],
       publishedTime: post.$createdAt,
       modifiedTime: post.$updatedAt,
@@ -46,7 +46,7 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       images: imageUrl ? [imageUrl] : [],
     },
     alternates: {
-      canonical: `https://dichvucayxanh.me/bai-viet/${post.slug}`,
+      canonical: `https://www.dichvucayxanh.me/bai-viet/${post.slug}`,
     },
   };
 }
@@ -72,16 +72,16 @@ export default async function PostPage({ params }: PostPageProps) {
     author: {
       '@type': 'Organization',
       name: 'Dịch Vụ Cây Xanh',
-      url: 'https://dichvucayxanh.me',
+      url: 'https://www.dichvucayxanh.me',
     },
     publisher: {
       '@type': 'Organization',
       name: 'Dịch Vụ Cây Xanh',
-      url: 'https://dichvucayxanh.me',
+      url: 'https://www.dichvucayxanh.me',
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://dichvucayxanh.me/bai-viet/${post.slug}`,
+      '@id': `https://www.dichvucayxanh.me/bai-viet/${post.slug}`,
     },
   };
 

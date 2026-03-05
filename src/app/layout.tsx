@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://dichvucayxanh.me'),
+  metadataBase: new URL('https://www.dichvucayxanh.me'),
   icons: {
     icon: '/favicon.svg',
     shortcut: '/favicon.svg',
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dịch Vụ Cây Xanh TP.HCM | Cưa Cây - Cắt Tỉa - Bứng Cây - Trồng Cây",
     description: "Dịch vụ cây xanh chuyên nghiệp tại TP.HCM: cưa cây, cắt tỉa cây, bứng cây, trồng cây",
-    url: 'https://dichvucayxanh.me',
+    url: 'https://www.dichvucayxanh.me',
     siteName: 'Dịch Vụ Cây Xanh',
     locale: 'vi_VN',
     type: 'website',
@@ -68,7 +68,7 @@ const organizationJsonLd = {
   '@type': 'LocalBusiness',
   name: 'Dịch Vụ Cây Xanh',
   description: 'Dịch vụ cây xanh chuyên nghiệp tại TP.HCM',
-  url: 'https://dichvucayxanh.me',
+  url: 'https://www.dichvucayxanh.me',
   telephone: '+84908396962',
   address: {
     '@type': 'PostalAddress',

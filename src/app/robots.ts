@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ['/api/', '/admin/'],
       },
     ],
-    sitemap: 'https://dichvucayxanh.com/sitemap.xml',
+    sitemap: 'https://www.dichvucayxanh.me/sitemap.xml',
   };
 }

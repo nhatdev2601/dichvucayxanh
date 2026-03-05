@@ -4,7 +4,7 @@ import { getPublishedPosts } from '@/lib/posts';
 import { getPublishedProjects } from '@/lib/projects';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://dichvucayxanh.me';
+  const baseUrl = 'https://www.dichvucayxanh.me';
 
   // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [

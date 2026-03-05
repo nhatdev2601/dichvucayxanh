@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       title: `${project.title} - ${project.location}`,
       description: project.description,
       type: 'website',
-      url: `https://dichvucayxanh.me/du-an/${project.slug}`,
+      url: `https://www.dichvucayxanh.me/du-an/${project.slug}`,
       images: imageUrl ? [{ url: imageUrl, alt: project.title }] : [],
     },
     twitter: {
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
       images: imageUrl ? [imageUrl] : [],
     },
     alternates: {
-      canonical: `https://dichvucayxanh.me/du-an/${project.slug}`,
+      canonical: `https://www.dichvucayxanh.me/du-an/${project.slug}`,
     },
   };
 }
@@ -65,7 +65,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     creator: {
       '@type': 'LocalBusiness',
       name: 'Dịch Vụ Cây Xanh',
-      url: 'https://dichvucayxanh.me',
+      url: 'https://www.dichvucayxanh.me',
     },
     locationCreated: {
       '@type': 'Place',
