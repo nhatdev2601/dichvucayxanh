@@ -113,7 +113,7 @@ export default function LienHePage() {
                     </svg>
                   </a>
                   <a
-                    href="https://zalo.me/0908396962"
+                    href="https://zalo.me/0982675730"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="h-12 w-12 bg-[#0068FF] rounded-full flex items-center justify-center text-white hover:opacity-80 transition-opacity"
@@ -123,7 +123,7 @@ export default function LienHePage() {
                     </svg>
                   </a>
                   <a
-                    href="tel:0908396962"
+                    href="tel:0982675730"
                     className="h-12 w-12 bg-primary rounded-full flex items-center justify-center text-white hover:opacity-80 transition-opacity"
                   >
                     <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -196,7 +196,7 @@ export default function LienHePage() {
                         value={formData.phone}
                         onChange={handleChange}
                         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                        placeholder="0908 396 962"
+                        placeholder="0982675730"
                       />
                     </div>
 
@@ -280,7 +280,7 @@ export default function LienHePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <a
-              href="tel:0908396962"
+              href="tel:0982675730"
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 group"
             >
               <div className="inline-flex h-16 w-16 items-center justify-center rounded-full bg-white/20 mb-4 group-hover:scale-110 transition-transform">
@@ -289,12 +289,12 @@ export default function LienHePage() {
                 </svg>
               </div>
               <h3 className="text-2xl font-bold mb-2">Gọi điện</h3>
-              <p className="text-green-100 mb-2">0908 396 962</p>
+              <p className="text-green-100 mb-2">0982675730</p>
               <p className="text-sm text-green-100">Hỗ trợ 24/7</p>
             </a>
 
             <a
-              href="https://zalo.me/0908396962"
+              href="https://zalo.me/0982675730"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 text-center hover:bg-white/20 transition-all duration-300 group"
@@ -338,8 +338,8 @@ const contactInfo = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
       </svg>
     ),
-    link: 'tel:0908396962',
-    linkText: '0908 396 962',
+    link: 'tel:0982675730',
+    linkText: '0982675730',
   },
   {
     title: 'Email',

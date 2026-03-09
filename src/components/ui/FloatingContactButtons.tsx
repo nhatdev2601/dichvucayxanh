@@ -5,7 +5,7 @@ export default function FloatingContactButtons() {
     <div className="fixed bottom-6 right-6 z-40 flex flex-col space-y-3">
       {/* Phone Button */}
       <a
-        href="tel:0908396962"
+        href="tel:0982675730"
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-primary text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 animate-pulse-ring"
         aria-label="Gọi điện thoại"
       >
@@ -14,13 +14,13 @@ export default function FloatingContactButtons() {
         </svg>
         {/* Tooltip */}
         <span className="absolute right-full mr-3 hidden group-hover:block whitespace-nowrap rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg">
-          0908 396 962
+          0982675730
         </span>
       </a>
 
       {/* Zalo Button */}
       <a
-        href="https://zalo.me/0908396962"
+        href="https://zalo.me/0982675730"
         target="_blank"
         rel="noopener noreferrer"
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#0068FF] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"

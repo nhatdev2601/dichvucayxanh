@@ -97,7 +97,7 @@ export default function BaoGiaPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
-                    placeholder="0908 396 962"
+                    placeholder="0982675730"
                   />
                 </div>
               </div>
@@ -203,8 +203,8 @@ export default function BaoGiaPage() {
                 </svg>
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Hotline</h3>
-              <a href="tel:0908396962" className="text-primary font-semibold hover:underline">
-                0908 396 962
+              <a href="tel:0982675730" className="text-primary font-semibold hover:underline">
+                0982675730
               </a>
             </div>
 

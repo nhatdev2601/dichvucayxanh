@@ -29,7 +29,7 @@ export function getImageUrl(fileId: string): string {
   const endpoint = 'https://sgp.cloud.appwrite.io/v1';
   const projectId = '6984107f001d794d3c29';
   const bucketId = '69843fba001b3a343ee8';
-  return `${endpoint}/storage/buckets/${bucketId}/files/${fileId}/view?project=${projectId}&mode=admin`;
+  return `${endpoint}/storage/buckets/${bucketId}/files/${fileId}/view?project=${projectId}`;
 }
 
 // Format date

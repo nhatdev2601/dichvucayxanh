@@ -45,7 +45,7 @@ export function generateLocalBusinessSchema(): JsonLd {
     ],
     sameAs: [
       'https://facebook.com/dichvucayxanh',
-      'https://zalo.me/0908396962',
+      'https://zalo.me/0982675730',
     ],
     aggregateRating: {
       '@type': 'AggregateRating',

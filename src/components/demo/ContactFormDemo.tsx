@@ -110,7 +110,7 @@ export default function ContactFormDemo() {
               value={formData.phone}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
-              placeholder="0908396962"
+              placeholder="0982675730"
             />
           </div>
 

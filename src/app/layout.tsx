@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     default: "Dịch Vụ Cây Xanh TP.HCM | Cưa Cây - Cắt Tỉa - Bứng Cây - Trồng Cây",
     template: "%s | Dịch Vụ Cây Xanh TP.HCM"
   },
-  description: "Dịch vụ cây xanh chuyên nghiệp tại TP.HCM: cưa cây, cắt tỉa cây, bứng cây, trồng cây. Đội ngũ kỹ thuật giàu kinh nghiệm, giá cả cạnh tranh. Hotline: 0908 396 962",
+  description: "Dịch vụ cây xanh chuyên nghiệp tại TP.HCM: cưa cây, cắt tỉa cây, bứng cây, trồng cây. Đội ngũ kỹ thuật giàu kinh nghiệm, giá cả cạnh tranh. Hotline: 0982675730",
   keywords: ["dịch vụ cây xanh", "cưa cây", "cắt tỉa cây", "bứng cây", "trồng cây", "dịch vụ cây xanh TP.HCM", "Sài Gòn"],
   authors: [{ name: "Dịch Vụ Cây Xanh" }],
   creator: "Dịch Vụ Cây Xanh",
