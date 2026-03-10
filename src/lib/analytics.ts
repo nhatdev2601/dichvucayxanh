@@ -1,0 +1,46 @@
+declare global {
+  interface Window {
+    gtag: (...args: unknown[]) => void;
+    dataLayer: unknown[];
+  }
+}
+
+export const GA_MEASUREMENT_ID = 'G-TV4Q87N9PS';
+
+export function trackEvent(
+  eventName: string,
+  params?: Record<string, string | number | boolean>
+) {
+  if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
+    window.gtag('event', eventName, params);
+  }
+}
+
+export function trackPhoneClick(phone: string, location?: string) {
+  trackEvent('contact_click', {
+    contact_type: 'phone',
+    phone_number: phone,
+    page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),
+  });
+}
+
+export function trackZaloClick(location?: string) {
+  trackEvent('contact_click', {
+    contact_type: 'zalo',
+    page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),
+  });
+}
+
+export function trackFormSubmit(formName: string, params?: Record<string, string>) {
+  trackEvent('form_submit', {
+    form_name: formName,
+    ...params,
+  });
+}
+
+export function trackCTAClick(ctaName: string, location?: string) {
+  trackEvent('cta_click', {
+    cta_name: ctaName,
+    page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),
+  });
+}

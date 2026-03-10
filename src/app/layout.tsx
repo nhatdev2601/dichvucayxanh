@@ -4,6 +4,7 @@ import Script from "next/script";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import JsonLdScript from "@/components/seo/JsonLdScript";
+import AnalyticsEvents from "@/components/analytics/AnalyticsEvents";
 
 const inter = Inter({ 
   subsets: ["latin", "vietnamese"],
@@ -110,6 +111,7 @@ export default function RootLayout({
         </Script>
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <AnalyticsEvents />
         <JsonLdScript data={organizationJsonLd} />
         <LayoutWrapper>
           {children}

@@ -2,6 +2,7 @@
 
 import { Metadata } from 'next';
 import { useState } from 'react';
+import { trackFormSubmit } from '@/lib/analytics';
 
 export default function LienHePage() {
   const [formData, setFormData] = useState({
@@ -25,6 +26,7 @@ export default function LienHePage() {
     setTimeout(() => {
       setLoading(false);
       setSubmitted(true);
+      trackFormSubmit('contact_form', { service: formData.service });
       setFormData({
         name: '',
         phone: '',
