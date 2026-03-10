@@ -26,9 +26,7 @@ export default function FloatingContactButtons() {
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#0068FF] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
         aria-label="Chat Zalo"
       >
-        <svg className="h-7 w-7" viewBox="0 0 48 48" fill="currentColor">
-          <path d="M24 4C13.52 4 5 11.68 5 21.2c0 5.92 3.24 11.16 8.28 14.52L11 44l9.52-4.32c1.12.24 2.28.36 3.48.36 10.48 0 19-7.68 19-17.2S34.48 4 24 4zm0 30.4c-1.04 0-2.04-.12-3-.32l-5.48 2.48 1.24-5.16C13.4 29.16 11 25.4 11 21.2c0-7.04 6.04-12.8 13-12.8s13 5.76 13 12.8-6.04 13.2-13 13.2z"/>
-        </svg>
+        <img src="/zalo-icon.svg" alt="Zalo" className="h-8 w-8" />
         {/* Tooltip */}
         <span className="absolute right-full mr-3 hidden group-hover:block whitespace-nowrap rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg">
           Chat Zalo

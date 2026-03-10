@@ -15,13 +15,31 @@ export default function BaoGiaPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would integrate with Appwrite
-    console.log('Form submitted:', formData);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setError('');
+    setLoading(true);
+    try {
+      const res = await fetch('/api/bao-gia', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Gửi thất bại');
+      }
+      setSubmitted(true);
+      setFormData({ name: '', phone: '', email: '', service: '', area: '', address: '', message: '' });
+      setTimeout(() => setSubmitted(false), 8000);
+    } catch (err: any) {
+      setError(err.message || 'Đã xảy ra lỗi, vui lòng thử lại.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -64,6 +82,12 @@ export default function BaoGiaPage() {
                 <p className="text-green-800 text-center font-medium">
                   ✓ Đã gửi yêu cầu thành công! Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất.
                 </p>
+              </div>
+            )}
+
+            {error && (
+              <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-red-700 text-center font-medium">⚠ {error}</p>
               </div>
             )}
 
@@ -187,9 +211,15 @@ export default function BaoGiaPage() {
 
               <button
                 type="submit"
-                className="w-full px-8 py-4 bg-primary text-white text-lg font-bold rounded-full hover:bg-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl"
+                disabled={loading}
+                className="w-full px-8 py-4 bg-primary text-white text-lg font-bold rounded-full hover:bg-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
               >
-                Gửi yêu cầu báo giá
+                {loading ? (
+                  <>
+                    <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Đang gửi...
+                  </>
+                ) : 'Gửi yêu cầu báo giá'}
               </button>
             </form>
           </div>

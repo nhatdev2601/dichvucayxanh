@@ -15,28 +15,29 @@ export default function LienHePage() {
 
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
     setLoading(true);
-    
-    // Here you would integrate with Appwrite
-    // await submitContactForm(formData);
-    
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-      trackFormSubmit('contact_form', { service: formData.service });
-      setFormData({
-        name: '',
-        phone: '',
-        email: '',
-        service: '',
-        message: '',
+    try {
+      const res = await fetch('/api/lien-he', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
       });
-      
-      setTimeout(() => setSubmitted(false), 5000);
-    }, 1000);
+      const data = await res.json();
+      if (!res.ok || !data.success) throw new Error(data.error || 'Gửi thất bại');
+      trackFormSubmit('contact_form', { service: formData.service });
+      setSubmitted(true);
+      setFormData({ name: '', phone: '', email: '', service: '', message: '' });
+      setTimeout(() => setSubmitted(false), 8000);
+    } catch (err: any) {
+      setError(err.message || 'Đã xảy ra lỗi, vui lòng thử lại.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -168,6 +169,12 @@ export default function LienHePage() {
                   </div>
                 )}
 
+                {error && (
+                  <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-700 text-center font-medium">⚠ {error}</p>
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -257,9 +264,14 @@ export default function LienHePage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full px-8 py-4 bg-primary text-white text-lg font-bold rounded-full hover:bg-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-8 py-4 bg-primary text-white text-lg font-bold rounded-full hover:bg-primary-600 transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    {loading ? 'Đang gửi...' : 'Gửi tin nhắn'}
+                    {loading ? (
+                      <>
+                        <span className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        Đang gửi...
+                      </>
+                    ) : 'Gửi tin nhắn'}
                   </button>
                 </form>
               </div>
