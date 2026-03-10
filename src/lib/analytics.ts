@@ -13,6 +13,9 @@ export function trackEvent(
 ) {
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('event', eventName, params);
+    console.log(`📊 GA4 Event: ${eventName}`, params);
+  } else {
+    console.warn('⚠️ gtag not available yet');
   }
 }
 

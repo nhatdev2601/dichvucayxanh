@@ -106,7 +106,10 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             window.gtag = function(){window.dataLayer.push(arguments);};
             window.gtag('js', new Date());
-            window.gtag('config', 'G-TV4Q87N9PS');
+            window.gtag('config', 'G-TV4Q87N9PS', {
+              debug_mode: true
+            });
+            console.log('🎯 GA4 initialized: G-TV4Q87N9PS');
           `}
         </Script>
         <AnalyticsEvents />
