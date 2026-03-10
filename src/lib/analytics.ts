@@ -20,6 +20,16 @@ export function trackEvent(
 }
 
 export function trackPhoneClick(phone: string, location?: string) {
+  // Use GA4 recommended event: 'generate_lead'
+  trackEvent('generate_lead', {
+    currency: 'VND',
+    value: 1,
+    method: 'phone_click',
+    phone_number: phone,
+    page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),
+  });
+  
+  // Also send custom event for detailed tracking
   trackEvent('contact_click', {
     contact_type: 'phone',
     phone_number: phone,
@@ -28,6 +38,15 @@ export function trackPhoneClick(phone: string, location?: string) {
 }
 
 export function trackZaloClick(location?: string) {
+  // Use GA4 recommended event: 'generate_lead'
+  trackEvent('generate_lead', {
+    currency: 'VND',
+    value: 1,
+    method: 'zalo_click',
+    page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),
+  });
+  
+  // Also send custom event
   trackEvent('contact_click', {
     contact_type: 'zalo',
     page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { createPost } from '@/lib/posts';
 import { uploadImage } from '@/lib/upload';
@@ -24,6 +24,37 @@ export default function NewPostPage() {
     publishedAt: '',
   });
   const [tagInput, setTagInput] = useState('');
+  const [showYoutubePanel, setShowYoutubePanel] = useState(false);
+  const [youtubeUrl, setYoutubeUrl] = useState('');
+  const contentRef = useRef<HTMLTextAreaElement>(null);
+
+  const insertYouTubeEmbed = () => {
+    const url = youtubeUrl.trim();
+    const match = url.match(
+      /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|v\/|shorts\/)|youtu\.be\/)+([\w-]{11})/
+    );
+    const videoId = match?.[1];
+    if (!videoId) {
+      alert('URL YouTube không hợp lệ. Vui lòng dùng youtube.com/watch?v=... hoặc youtu.be/...');
+      return;
+    }
+    const embedHtml =
+      `\n<div class="youtube-embed" style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;margin:1.5rem 0">` +
+      `<iframe src="https://www.youtube.com/embed/${videoId}" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0" allowfullscreen loading="lazy" title="YouTube video player"></iframe></div>\n`;
+    const textarea = contentRef.current;
+    const pos = textarea?.selectionStart ?? formData.content.length;
+    const newContent = formData.content.slice(0, pos) + embedHtml + formData.content.slice(pos);
+    setFormData((prev) => ({ ...prev, content: newContent }));
+    setYoutubeUrl('');
+    setShowYoutubePanel(false);
+    setTimeout(() => {
+      if (textarea) {
+        textarea.focus();
+        const newPos = pos + embedHtml.length;
+        textarea.setSelectionRange(newPos, newPos);
+      }
+    }, 0);
+  };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -140,13 +171,60 @@ export default function NewPostPage() {
           {/* Content */}
           <div>
             <label className="block text-sm font-medium mb-2">Nội dung *</label>
+            {/* YouTube Toolbar */}
+            <div className="flex items-center gap-2 px-3 py-2 bg-gray-50 border border-gray-300 rounded-t-lg border-b-0">
+              <button
+                type="button"
+                onClick={() => setShowYoutubePanel((v) => !v)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-lg border transition ${
+                  showYoutubePanel
+                    ? 'bg-red-600 text-white border-red-600'
+                    : 'text-red-600 bg-red-50 hover:bg-red-100 border-red-200'
+                }`}
+                title="Chèn video YouTube"
+              >
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                Chèn YouTube
+              </button>
+              <span className="text-xs text-gray-400">Đặt con trỏ vào vị trí muốn chèn rồi nhấn nút</span>
+            </div>
+            {showYoutubePanel && (
+              <div className="flex items-center gap-2 px-3 py-2.5 bg-red-50 border border-gray-300 border-b-0 flex-wrap">
+                <input
+                  type="url"
+                  value={youtubeUrl}
+                  onChange={(e) => setYoutubeUrl(e.target.value)}
+                  placeholder="Dán link YouTube: youtube.com/watch?v=... hoặc youtu.be/..."
+                  className="flex-1 min-w-0 px-3 py-1.5 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-400 outline-none bg-white"
+                  onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), insertYouTubeEmbed())}
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  onClick={insertYouTubeEmbed}
+                  className="px-4 py-1.5 text-sm font-semibold text-white bg-red-600 hover:bg-red-700 rounded-lg transition flex-shrink-0"
+                >
+                  Chèn vào nội dung
+                </button>
+                <button
+                  type="button"
+                  onClick={() => { setShowYoutubePanel(false); setYoutubeUrl(''); }}
+                  className="px-3 py-1.5 text-sm text-gray-500 hover:text-gray-800 transition"
+                >
+                  Hủy
+                </button>
+              </div>
+            )}
             <textarea
+              ref={contentRef}
               required
               rows={15}
               value={formData.content}
               onChange={(e) => setFormData({ ...formData, content: e.target.value })}
-              className="w-full px-4 py-2 border rounded-lg"
-              placeholder="Nội dung chi tiết (hỗ trợ Markdown)"
+              className="w-full px-4 py-2 border border-gray-300 rounded-b-lg focus:ring-2 focus:ring-green-500 outline-none"
+              placeholder="Nội dung chi tiết (hỗ trợ HTML + YouTube embed)"
             />
           </div>
 
