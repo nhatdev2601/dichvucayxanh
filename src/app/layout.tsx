@@ -109,6 +109,7 @@ export default function RootLayout({
             window.gtag('config', 'G-TV4Q87N9PS', {
               debug_mode: true
             });
+            window.gtag('config', 'AW-17888542151');
             console.log('🎯 GA4 initialized: G-TV4Q87N9PS');
           `}
         </Script>
