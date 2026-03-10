@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import LayoutWrapper from "@/components/layout/LayoutWrapper";
 import JsonLdScript from "@/components/seo/JsonLdScript";
@@ -94,6 +95,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-TV4Q87N9PS"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-TV4Q87N9PS');
+          `}
+        </Script>
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         <JsonLdScript data={organizationJsonLd} />
         <LayoutWrapper>
