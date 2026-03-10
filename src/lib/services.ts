@@ -2,6 +2,14 @@ import { databases, DATABASE_ID, SERVICES_COLLECTION_ID } from './appwrite';
 import { Service, ServiceFormData } from '@/types';
 import { Query, ID, Permission, Role } from 'appwrite';
 
+// Desired display order by slug (unlisted slugs go to the end)
+const SERVICE_ORDER = [
+  'dich-vu-cua-cay',
+  'dich-vu-cat-tia-cay',
+  'dich-vu-bung-cay',
+  'dich-vu-trong-cay',
+];
+
 // Get all published services
 export async function getPublishedServices(): Promise<Service[]> {
   try {
@@ -10,7 +18,14 @@ export async function getPublishedServices(): Promise<Service[]> {
       SERVICES_COLLECTION_ID,
       [Query.equal('isPublished', true), Query.orderDesc('$createdAt')]
     );
-    return response.documents as Service[];
+    const docs = response.documents as Service[];
+    return docs.sort((a, b) => {
+      const ia = SERVICE_ORDER.indexOf(a.slug);
+      const ib = SERVICE_ORDER.indexOf(b.slug);
+      const ra = ia === -1 ? 999 : ia;
+      const rb = ib === -1 ? 999 : ib;
+      return ra - rb;
+    });
   } catch (error) {
     console.error('Error fetching services:', error);
     return [];
