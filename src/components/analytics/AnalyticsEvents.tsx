@@ -11,14 +11,15 @@ import { trackPhoneClick, trackZaloClick, trackCTAClick } from '@/lib/analytics'
 export default function AnalyticsEvents() {
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+      const target = e.target;
+      if (!target || !(target instanceof Element)) return;
+
       const anchor = target.closest('a');
-      const button = target.closest('button');
       const path = window.location.pathname;
 
       if (anchor) {
         const href = anchor.getAttribute('href') || '';
-        const text = anchor.innerText?.trim() || '';
+        const text = (anchor as HTMLElement).innerText?.trim() || '';
 
         // Track all tel: clicks
         if (href.startsWith('tel:')) {
@@ -33,7 +34,7 @@ export default function AnalyticsEvents() {
           return;
         }
 
-        // Track "Báo giá" / "Nhận báo giá" CTA clicks
+        // Track CTA button clicks
         if (
           text.includes('Báo giá') ||
           text.includes('báo giá') ||
@@ -42,19 +43,6 @@ export default function AnalyticsEvents() {
           text.includes('Tư vấn')
         ) {
           trackCTAClick(text.substring(0, 50), path);
-        }
-      }
-
-      if (button) {
-        const text = button.innerText?.trim() || '';
-        if (
-          text.includes('Gửi') ||
-          text.includes('gửi') ||
-          text.includes('Submit') ||
-          text.includes('Liên hệ') ||
-          text.includes('Báo giá')
-        ) {
-          // Form submit buttons are tracked separately via handleSubmit
         }
       }
     };

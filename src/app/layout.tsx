@@ -96,7 +96,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="vi">
-      <head>
+      <body className={`${inter.variable} font-sans antialiased`}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TV4Q87N9PS"
           strategy="afterInteractive"
@@ -104,13 +104,11 @@ export default function RootLayout({
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-TV4Q87N9PS');
+            window.gtag = function(){window.dataLayer.push(arguments);};
+            window.gtag('js', new Date());
+            window.gtag('config', 'G-TV4Q87N9PS');
           `}
         </Script>
-      </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
         <AnalyticsEvents />
         <JsonLdScript data={organizationJsonLd} />
         <LayoutWrapper>
