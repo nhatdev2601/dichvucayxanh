@@ -99,9 +99,10 @@ export default async function HomePage() {
                 const imageAlt = service.altText || service.title;
 
                 return (
-                  <div
+                  <Link
                     key={service.$id}
-                    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
+                    href={`/dich-vu/${service.slug}`}
+                    className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 block"
                   >
                     <div className="relative h-56 overflow-hidden">
                       {imageUrl ? (
@@ -158,17 +159,16 @@ export default async function HomePage() {
                         <p className="text-lg font-bold text-gray-900">{"Liên hệ để báo giá"}</p>
                       </div>
 
-                      <Link
-                        href={`/dich-vu/${service.slug}`}
-                        className="mt-4 w-full inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-primary-600 transition-all duration-300 group-hover:shadow-lg"
+                      <span
+                        className="mt-4 w-full inline-flex items-center justify-center px-6 py-3 bg-primary text-white font-semibold rounded-lg group-hover:bg-primary-600 transition-all duration-300 group-hover:shadow-lg"
                       >
                         {"Tìm Hiểu Thêm"}
                         <svg className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                         </svg>
-                      </Link>
+                      </span>
                     </div>
-                  </div>
+                  </Link>
                 );
               })
             ) : (
