@@ -19,7 +19,7 @@ export default async function HomePage() {
       <section className="relative h-screen min-h-[600px] flex items-center justify-center">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?q=80&w=2532&auto=format&fit=crop"
+            src="/cua-cay-tphcm(1).jpg"
             alt="Dich vu cay xanh TP.HCM"
             fill
             className="object-cover"
