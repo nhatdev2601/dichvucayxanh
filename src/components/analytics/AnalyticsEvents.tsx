@@ -10,7 +10,11 @@ import { trackPhoneClick, trackZaloClick, trackCTAClick } from '@/lib/analytics'
  */
 export default function AnalyticsEvents() {
   useEffect(() => {
-    console.log('🎯 AnalyticsEvents mounted - click tracking active');
+    const shouldLog = process.env.NODE_ENV !== 'production';
+
+    if (shouldLog) {
+      console.log('🎯 AnalyticsEvents mounted - click tracking active');
+    }
     
     const handleClick = (e: MouseEvent) => {
       const target = e.target;
@@ -26,14 +30,14 @@ export default function AnalyticsEvents() {
         // Track all tel: clicks
         if (href.startsWith('tel:')) {
           const phone = href.replace('tel:', '').replace(/\s/g, '');
-          console.log('☎️ Phone click detected:', phone);
+          if (shouldLog) console.log('☎️ Phone click detected:', phone);
           trackPhoneClick(phone, path);
           return;
         }
 
         // Track Zalo clicks
         if (href.includes('zalo.me')) {
-          console.log('💬 Zalo click detected');
+          if (shouldLog) console.log('💬 Zalo click detected');
           trackZaloClick(path);
           return;
         }
@@ -46,7 +50,7 @@ export default function AnalyticsEvents() {
           text.includes('Liên hệ') ||
           text.includes('Tư vấn')
         ) {
-          console.log('🎯 CTA click detected:', text);
+          if (shouldLog) console.log('🎯 CTA click detected:', text);
           trackCTAClick(text.substring(0, 50), path);
         }
       }

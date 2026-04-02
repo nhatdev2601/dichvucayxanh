@@ -24,7 +24,8 @@ export default async function HomePage() {
             fill
             className="object-cover"
             priority
-            quality={90}
+            sizes="100vw"
+            quality={75}
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/80"></div>
         </div>
@@ -106,10 +107,13 @@ export default async function HomePage() {
                   >
                     <div className="relative h-56 overflow-hidden">
                       {imageUrl ? (
-                        <img
+                        <Image
                           src={imageUrl}
                           alt={imageAlt}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                          fill
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-700"
+                          quality={75}
                         />
                       ) : (
                         <div className={`w-full h-full bg-gradient-to-br ${meta.gradient} flex items-center justify-center`}>

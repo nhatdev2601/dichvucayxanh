@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { getPublishedServices } from '@/lib/services';
 import { getImageUrl } from '@/lib/utils';
@@ -85,10 +86,13 @@ export default async function DichVuPage() {
                   {/* Image */}
                   <div className="relative h-64 overflow-hidden">
                     {imageUrl ? (
-                      <img
+                      <Image
                         src={imageUrl}
                         alt={imageAlt}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        quality={75}
                       />
                     ) : (
                       <div className={`w-full h-full bg-gradient-to-br ${meta.gradient} flex items-center justify-center`}>

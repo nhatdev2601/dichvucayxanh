@@ -1,5 +1,7 @@
 'use client';
 
+import Image from 'next/image';
+
 export default function FloatingContactButtons() {
   const PHONE_NUMBER = '0982675730';
   const PHONE_LABEL = 'Tư Vấn Miễn Phí';
@@ -31,7 +33,7 @@ export default function FloatingContactButtons() {
         className="group relative flex h-14 w-14 items-center justify-center rounded-full bg-[#0068FF] text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
         aria-label="Chat Zalo"
       >
-        <img src="/zalo-icon.svg" alt="Zalo" className="h-8 w-8" />
+        <Image src="/zalo-icon.svg" alt="Zalo" width={32} height={32} />
         {/* Tooltip */}
         <span className="absolute right-full mr-3 hidden group-hover:block whitespace-nowrap rounded-lg bg-gray-900 px-3 py-2 text-sm text-white shadow-lg">
           Chat Zalo

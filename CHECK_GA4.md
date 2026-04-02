@@ -21,7 +21,7 @@
 3. Click **DebugView**
 4. Mở một tab mới RIÊNG (Incognito hoặc Private) → vào web của bạn
 5. Click số điện thoại
-6. Quay lại DebugView → Xem có event `contact_click` không
+6. Quay lại DebugView → Xem có event `click_phone` / `click_zalo` không
 
 ## Bước 3: Tắt tất cả Extension
 

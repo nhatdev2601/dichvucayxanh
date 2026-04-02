@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getProjectBySlug, getPublishedProjects } from '@/lib/projects';
 import { getImageUrl, formatDate } from '@/lib/utils';
@@ -107,10 +108,15 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             <div className="mb-8 grid grid-cols-1 md:grid-cols-2 gap-4">
               {project.gallery.map((imageId: string, index: number) => (
                 <div key={imageId} className={`rounded-lg overflow-hidden ${index === 0 ? 'md:col-span-2' : ''}`}>
-                  <img
+                  <Image
                     src={getImageUrl(imageId)}
                     alt={`${project.title} - Hình ${index + 1}`}
-                    className="w-full h-auto"
+                    width={1200}
+                    height={800}
+                    sizes={index === 0 ? '(max-width: 768px) 100vw, 1024px' : '(max-width: 768px) 100vw, 50vw'}
+                    quality={75}
+                    priority={index === 0}
+                    style={{ width: '100%', height: 'auto' }}
                   />
                 </div>
               ))}

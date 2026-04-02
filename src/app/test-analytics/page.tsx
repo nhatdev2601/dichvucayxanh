@@ -113,7 +113,11 @@ export default function TestAnalyticsPage() {
               <li>Xem events xuất hiện trong Console với icon 📊</li>
               <li>Vào GA4 → <strong>Báo cáo</strong> → <strong>Thời gian thực</strong></li>
               <li>Scroll xuống phần <strong>"Sự kiện theo tên sự kiện"</strong></li>
-              <li>Tìm event <code className="bg-gray-200 px-2 py-1 rounded">contact_click</code></li>
+              <li>
+                Tìm event{' '}
+                <code className="bg-gray-200 px-2 py-1 rounded">click_phone</code> và{' '}
+                <code className="bg-gray-200 px-2 py-1 rounded">click_zalo</code>
+              </li>
             </ol>
           </div>
 

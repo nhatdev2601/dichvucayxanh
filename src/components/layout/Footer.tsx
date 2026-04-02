@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -10,11 +11,7 @@ export default function Footer() {
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center space-x-2 mb-4">
-             <img
-                src="/logo.svg"
-                alt="Cây Xanh TP.HCM Logo"
-                className="h-10 w-10"
-              />
+              <Image src="/logo.svg" alt="Cây Xanh TP.HCM Logo" width={40} height={40} />
               <span className="text-xl font-bold text-white">
                 Cây Xanh <span className="text-primary">TP.HCM</span>
               </span>

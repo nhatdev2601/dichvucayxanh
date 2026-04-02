@@ -11,11 +11,17 @@ export function trackEvent(
   eventName: string,
   params?: Record<string, string | number | boolean>
 ) {
+  const shouldLog = process.env.NODE_ENV !== 'production';
+
   if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
     window.gtag('event', eventName, params);
-    console.log(`📊 GA4 Event: ${eventName}`, params);
+    if (shouldLog) {
+      console.log(`📊 GA4 Event: ${eventName}`, params);
+    }
   } else {
-    console.warn('⚠️ gtag not available yet');
+    if (shouldLog) {
+      console.warn('⚠️ gtag not available yet');
+    }
   }
 }
 
@@ -30,8 +36,7 @@ export function trackPhoneClick(phone: string, location?: string) {
   });
   
   // Also send custom event for detailed tracking
-  trackEvent('contact_click', {
-    contact_type: 'phone',
+  trackEvent('click_phone', {
     phone_number: phone,
     page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),
   });
@@ -47,8 +52,7 @@ export function trackZaloClick(location?: string) {
   });
   
   // Also send custom event
-  trackEvent('contact_click', {
-    contact_type: 'zalo',
+  trackEvent('click_zalo', {
     page_location: location || (typeof window !== 'undefined' ? window.location.pathname : ''),
   });
 }

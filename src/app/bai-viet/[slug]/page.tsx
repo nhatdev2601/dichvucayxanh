@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { getPostBySlug, getPublishedPosts } from '@/lib/posts';
 import { getImageUrl, formatDate } from '@/lib/utils';
@@ -105,10 +106,15 @@ export default async function PostPage({ params }: PostPageProps) {
           {/* Featured Image */}
           {imageUrl && (
             <div className="mb-8 rounded-lg overflow-hidden">
-              <img
+              <Image
                 src={imageUrl}
                 alt={post.title}
-                className="w-full h-auto"
+                width={1200}
+                height={800}
+                sizes="(max-width: 768px) 100vw, 768px"
+                quality={75}
+                priority
+                style={{ width: '100%', height: 'auto' }}
               />
             </div>
           )}

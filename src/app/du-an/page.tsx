@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import { getPublishedProjects } from '@/lib/projects';
 import { getImageUrl, formatDate } from '@/lib/utils';
 
@@ -43,11 +44,14 @@ export default async function DuAnPage() {
                 className="group bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow overflow-hidden"
               >
                 {project.coverImage && (
-                  <div className="aspect-video mb-4 overflow-hidden rounded-lg">
-                    <img
+                  <div className="relative aspect-video mb-4 overflow-hidden rounded-lg">
+                    <Image
                       src={getImageUrl(project.coverImage)}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-300"
+                      quality={75}
                     />
                   </div>
                 )}

@@ -94,23 +94,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const debugMode = process.env.NODE_ENV !== 'production';
+
   return (
     <html lang="vi">
       <body className={`${inter.variable} font-sans antialiased`}>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-TV4Q87N9PS"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             window.gtag = function(){window.dataLayer.push(arguments);};
             window.gtag('js', new Date());
             window.gtag('config', 'G-TV4Q87N9PS', {
-              debug_mode: true
+              debug_mode: ${debugMode ? 'true' : 'false'}
             });
             window.gtag('config', 'AW-17888542151');
-            console.log('🎯 GA4 initialized: G-TV4Q87N9PS');
           `}
         </Script>
         <AnalyticsEvents />
